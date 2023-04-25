@@ -1,6 +1,6 @@
 package com.laveberry.dto;
 
-import org.assertj.core.api.Assertions;
+import com.laveberry.web.dto.HelloResponseDto;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.*;

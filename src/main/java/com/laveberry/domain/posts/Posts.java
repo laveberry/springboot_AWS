@@ -29,4 +29,9 @@ public class Posts { //Entity Class : 실제 DB에 매칭될 클래스, Setter �
         this.content = content;
         this.author = author;
     }
+
+    public void update(String title, String content){
+        this.title = title;
+        this.content = content;
+    }
 }

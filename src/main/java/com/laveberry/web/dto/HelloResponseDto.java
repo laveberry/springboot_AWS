@@ -1,4 +1,4 @@
-package com.laveberry.dto;
+package com.laveberry.web.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
