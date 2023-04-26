@@ -1,5 +1,6 @@
 package com.laveberry.domain.posts;
 
+import com.laveberry.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity //jpa어노테이션. 테이블과 링크될 클래스임을 나타냄
-public class Posts { //Entity Class : 실제 DB에 매칭될 클래스, Setter 만들지 않음!
+public class Posts extends BaseTimeEntity { //Entity Class : 실제 DB에 매칭될 클래스, Setter 만들지 않음!
     @Id //PK
     @GeneratedValue(strategy = GenerationType.IDENTITY) //PK생성규칙
     private Long id;
