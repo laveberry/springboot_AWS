@@ -1,5 +1,6 @@
 package com.laveberry.web;
 
+import com.laveberry.config.auth.LoginUser;
 import com.laveberry.config.auth.dto.SessionUser;
 import com.laveberry.service.posts.PostsService;
 import com.laveberry.web.dto.PostsResponseDto;
@@ -19,12 +20,12 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model, @LoginUser SessionUser user){
 
         model.addAttribute("posts", postsService.findAllDesc());
 
         //시큐리티 구글 로그인 추가
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        //SessionUser user = (SessionUser) httpSession.getAttribute("user");
         if(user != null){
             model.addAttribute("userName", user.getName());
         }
