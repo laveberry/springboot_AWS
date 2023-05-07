@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-@EnableJpaAuditing //JPA Auditing 활성화
+//@EnableJpaAuditing //JPA Auditing 활성화
 @SpringBootApplication //스프링부트 자동설정, Bean 읽기와 생성 자동
 public class Main {
     public static void main(String[] args) {

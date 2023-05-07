@@ -1,9 +1,13 @@
 package com.laveberry.web;
 
+import com.laveberry.config.auth.SecurityConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -15,13 +19,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)//(1)RunWith : 스프링부트테스트와 JUnuit 연결자
-@WebMvcTest(controllers = HelloController.class)//(2)WebMvcTest : springMVC집중
+@WebMvcTest(controllers = HelloController.class,
+        excludeFilters = {
+        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = SecurityConfig.class)
+        }
+)//(2)WebMvcTest : springMVC집중  / 시큐리티 테스트 위해 스캔대상에서 SecurityConfig 제거
 public class HelloControllerTest {
 
     @Autowired //(3)빈주입
     private MockMvc mvc; //(4)MockMvc : 스프링API테스트 시작점
 
     @Test
+    @WithMockUser(roles = "USER")
     public void hello가_리턴된다() throws Exception {
         String hello = "hello";
         mvc.perform(get("/hello")) //(5)url Get 요청
@@ -31,6 +40,7 @@ public class HelloControllerTest {
 
 
     @Test
+    @WithMockUser(roles = "USER")
     public void helloDto가_리턴된다() throws Exception{
         String name = "hello";
         int amount = 1000;
