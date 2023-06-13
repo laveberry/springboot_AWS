@@ -4,7 +4,6 @@ buildscript {//플러그인 의존성 관리
     }
     repositories {
         mavenCentral()
-        jcenter()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
