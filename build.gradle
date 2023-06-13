@@ -1,5 +1,5 @@
-buildscript {
-    ext {
+buildscript {//플러그인 의존성 관리
+    ext {//전역변수 설정
         springBootVersion = '2.1.7.RELEASE'
     }
     repositories {
@@ -14,17 +14,17 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
+apply plugin: 'io.spring.dependency-management' //부트 의존성 관리 플러그인
 
 group 'com.laveberry'
 version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
-repositories {
+repositories { //라이브러리 원격저장소 위치
     mavenCentral()
 }
 
-dependencies {
+dependencies { //개발필요 의존성 세팅
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
     implementation('org.springframework.boot:spring-boot-starter-mustache')
