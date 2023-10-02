@@ -20,4 +20,21 @@ notifications:
     recipients:
       - laveberry7@gmail.com
 
+before_install:
+  - chmod +x ./gradlew
 
+before_deploy:
+  - zip -r springboot_AWS *
+  - mkdir -p deploy
+  - mv springboot_AWS.zip deploy/springboot_AWS.zip
+
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY #Travis repo setting에 설정된 값
+    secret_access_key: $AWS_SECRET_KEY #Travis repo setting설정값
+    bucket: freelec-springboot-build #s3 버킷
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private #zip 파일 접근 private
+    local_dir: deploy #before_deploy에서 생성한 디렉토리
+    wait-until-deployed: true
